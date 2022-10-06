@@ -16,9 +16,9 @@ spring:
             name: monitor-books
             fallbackUri: forward:/fallback/serviceBooks
       - id: serviceA
-        uri: lb://service-A
+        uri: lb://service-kitchen
         predicates:
-        - Path=/srva/**
+        - Path=/kitchen/**
         filters:
         - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: Hystrix
@@ -26,9 +26,9 @@ spring:
             name: monitor-srvA
             fallbackUri: forward:/fallback/serviceA
       - id: ServiceB
-        uri: lb://service-B
+        uri: lb://service-customers
         predicates:
-        - Path=/srvb/**
+        - Path=/customers/**
         filters:
         - RewritePath=/srvb/(?<segment>.*), /$\{segment}
         - name: Hystrix

@@ -15,25 +15,25 @@ spring:
           args:
             name: monitor-books
             fallbackUri: forward:/fallback/serviceBooks
-      - id: serviceA
+      - id: service-kitchen
         uri: lb://service-kitchen
         predicates:
         - Path=/kitchen/**
         filters:
-        - RewritePath=/srva/(?<segment>.*), /$\{segment}
+        - RewritePath=/kitchen/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-srvA
-            fallbackUri: forward:/fallback/serviceA
-      - id: ServiceB
+            name: monitor-kitchen
+            fallbackUri: forward:/fallback/service-kitchen
+      - id: service-customers
         uri: lb://service-customers
         predicates:
         - Path=/customers/**
         filters:
-        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
+        - RewritePath=/customers/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-srvB
+            name: monitor-customers
             fallbackUri: forward:/fallback/serviceB  
       - id: ServiceWeather
         uri: lb://service-Weather

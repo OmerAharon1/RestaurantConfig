@@ -18,9 +18,9 @@ spring:
       - id: service-kitchen
         uri: lb://service-kitchen
         predicates:
-        - Path=/kitchen/**
+        - Path=/service-kitchen/**
         filters:
-        - RewritePath=/kitchen/(?<segment>.*), /$\{segment}
+        - RewritePath=/service-kitchen/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
             name: monitor-kitchen
@@ -28,9 +28,9 @@ spring:
       - id: service-customers
         uri: lb://service-customers
         predicates:
-        - Path=/customers/**
+        - Path=//service-customers/**
         filters:
-        - RewritePath=/customers/(?<segment>.*), /$\{segment}
+        - RewritePath=//service-customers/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
             name: monitor-customers

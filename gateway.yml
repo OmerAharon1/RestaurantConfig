@@ -29,6 +29,7 @@ spring:
         uri: lb://service-customers
         predicates:
         - Path=//service-customers/**
+        - Method=GET,POST, UPDATE , DELETE
         filters:
         - RewritePath=//service-customers/(?<segment>.*), /$\{segment}
         - name: Hystrix
